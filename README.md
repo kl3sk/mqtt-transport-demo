@@ -40,6 +40,7 @@ The message sent should be a JSON like this:
 }
 ```
 
+The database should be populated within.
 
 
 _Note:_ Please note, I'm learning Symfony messenger and MQTT, any advice is appreciated.
