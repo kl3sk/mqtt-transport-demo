@@ -26,6 +26,11 @@ Start docker stack:
 docker-compose up -d
 ```
 
+Apply migrations
+```bash
+php bin/console doctrine:migrations:migrate
+```
+
 Start worker to consume message on configured topics (/topic1 and /topic2, in our case)
 ```bash
 php bin/console  messenger:consume mqtt -vv
