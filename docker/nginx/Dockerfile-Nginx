@@ -1,0 +1,26 @@
+FROM nginx:latest
+
+#RUN touch /var/log/nginx/app_access.log
+#RUN touch /var/log/nginx/app_error.log
+#
+#RUN chmod -R 777 /var/log/nginx/app_access.log
+#RUN chmod -R 777 /var/log/nginx/app_error.log
+#RUN chown 1000.1000 /var/log/nginx/app_access.log
+#RUN chown 1000.1000 /var/log/nginx/app_error.log
+
+#COPY /docker/nginx/conf.d/default.conf.tpl /etc/nginx/conf.d/default.conf.tpl
+
+RUN echo "" > /var/log/nginx/app_access.log
+RUN echo "" > /var/log/nginx/app_error.log
+
+RUN apt-get update -o Acquire::CompressionTypes::Order::=gz --allow-releaseinfo-change
+RUN apt-get -y install \
+    procps \
+    iputils-ping \
+    net-tools \
+    nano
+
+RUN chown nginx:nginx /etc/nginx/conf.d
+
+WORKDIR /app
+

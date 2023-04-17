@@ -1,0 +1,36 @@
+ARG NODE_VERSION=16.17
+
+FROM node:${NODE_VERSION}
+
+COPY ../../package.json /app/package.json
+# COPY ../../.npmrc .npmrc # not used now
+RUN mkdir /app/node_modules
+RUN chmod 777 /app/node_modules
+ENV NODE_ENV=development
+
+RUN apk update
+RUN apk add php81-fpm
+RUN apk add php81
+RUN apk add php81-mbstring
+RUN apk add php81-tokenizer
+RUN apk add php81-ctype
+RUN apk add php81-dom
+RUN apk add php81-simplexml
+RUN apk add php81-session
+
+RUN mv /usr/bin/php81 /usr/bin/php
+
+# Add npm-check-updates
+RUN npm install -g npm-check-updates
+RUN npm install -g npm
+
+#RUN rm -rf node_modules
+#RUN npm install
+
+
+#CMD [ "npm", "run", "watch"]
+#CMD [ "encore", "dev"]
+#CMD [ "npm", "run", "dev-server"]
+
+#EXPOSE 8080
+WORKDIR /app

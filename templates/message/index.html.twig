@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Messages</h1>
+
+    <ul>
+        {%- for message in messages -%}
+            <li>
+                {{ message.receivedAt|date('d/m/Y H:i:s') }}
+                <br>
+                {{ message.topic }}
+                <br>
+                {{ message.content }}
+            </li>
+        {%- endfor -%}
+    </ul>
+
+{% endblock body %}
